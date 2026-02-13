@@ -4,6 +4,9 @@
     <title>For Nehana ❤️</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
@@ -13,10 +16,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: Arial, sans-serif;
             text-align: center;
             overflow: hidden;
             color: #ff4d6d;
+            font-family: 'Dancing Script', cursive;
         }
 
         .container {
@@ -25,7 +28,7 @@
         }
 
         h1 {
-            font-size: 2.2rem;
+            font-size: 2.8rem;
         }
 
         img {
@@ -40,12 +43,12 @@
 
         button {
             padding: 12px 25px;
-            font-size: 18px;
+            font-size: 20px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
             margin: 10px;
-            transition: 0.3s ease;
+            font-family: 'Dancing Script', cursive;
         }
 
         #yesBtn {
@@ -93,36 +96,12 @@
     <source src="romantic.mp3" type="audio/mpeg">
 </audio>
 
-<!-- 🌷 TULIPS -->
+<!-- Floating Emojis -->
 <div class="floating" style="top:5%; left:5%;">🌷</div>
-<div class="floating" style="top:12%; left:20%;">🌷</div>
-<div class="floating" style="top:18%; right:10%;">🌷</div>
-<div class="floating" style="top:30%; right:25%;">🌷</div>
-<div class="floating" style="bottom:15%; left:10%;">🌷</div>
-<div class="floating" style="bottom:20%; right:15%;">🌷</div>
-<div class="floating" style="top:60%; left:3%;">🌷</div>
-<div class="floating" style="top:70%; right:5%;">🌷</div>
-
-<!-- 🍗 FRIED CHICKEN -->
-<div class="floating" style="top:25%; left:35%;">🍗</div>
-<div class="floating" style="top:40%; right:30%;">🍗</div>
-<div class="floating" style="bottom:30%; left:25%;">🍗</div>
-<div class="floating" style="bottom:35%; right:40%;">🍗</div>
-<div class="floating" style="top:75%; left:40%;">🍗</div>
-
-<!-- 🧀 CHEESE -->
-<div class="floating" style="top:15%; right:40%;">🧀</div>
-<div class="floating" style="top:55%; right:20%;">🧀</div>
-<div class="floating" style="bottom:45%; left:45%;">🧀</div>
-<div class="floating" style="bottom:10%; right:30%;">🧀</div>
-<div class="floating" style="top:35%; left:50%;">🧀</div>
-
-<!-- 💖 LOVE -->
-<div class="floating" style="top:8%; right:5%;">💖</div>
-<div class="floating" style="bottom:5%; left:5%;">💖</div>
-<div class="floating" style="top:50%; right:45%;">✨</div>
-<div class="floating" style="bottom:60%; left:15%;">💘</div>
-<div class="floating" style="top:80%; right:25%;">❤️</div>
+<div class="floating" style="top:15%; right:10%;">🌷</div>
+<div class="floating" style="bottom:20%; left:15%;">🍗</div>
+<div class="floating" style="top:60%; right:20%;">🧀</div>
+<div class="floating" style="bottom:10%; right:25%;">💖</div>
 
 <div class="container" id="mainContainer">
     <h1 id="question">Will you be my Valentine, Nehana? 🥺❤️💖🌷🍗🧀✨</h1>
@@ -142,4 +121,49 @@
     const image = document.getElementById("image");
     const container = document.getElementById("mainContainer");
 
-    function moveButton()
+    function moveButton() {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 50);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+
+    noBtn.addEventListener("mouseover", moveButton);
+    noBtn.addEventListener("touchstart", function(e){
+        e.preventDefault();
+        moveButton();
+    });
+
+    function createConfetti() {
+        const emojis = ["🎉","✨","💖","🌷","🍗","🧀","❤️"];
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement("div");
+            confetti.classList.add("confetti");
+            confetti.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            confetti.style.left = Math.random() * 100 + "vw";
+            confetti.style.animationDuration = (2 + Math.random() * 2) + "s";
+            document.body.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 3000);
+        }
+    }
+
+    yesBtn.addEventListener("click", function() {
+        question.innerHTML = "YAYYYY!!! Nammal epala Varkala pone? 🤨";
+        image.remove();
+
+        const newGif = document.createElement("img");
+        newGif.src = "baby.gif";
+        container.insertBefore(newGif, container.children[1]);
+
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+
+        createConfetti();
+    });
+</script>
+
+</body>
+</html>
