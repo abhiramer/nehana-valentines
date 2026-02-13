@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For Nehana ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+            color: #ff4d6d;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+        }
+
+        img {
+            width: 260px;
+            margin: 20px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s ease;
+        }
+
+        #yesBtn {
+            background-color: #ff2e63;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #333;
+            color: white;
+            position: absolute;
+        }
+
+        /* Floating elements */
+        .floating {
+            position: absolute;
+            font-size: 35px;
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.8;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-25px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .celebrate {
+            font-size: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- 🎵 Background Music -->
+<audio autoplay loop>
+    <source src="romantic.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🌷 Tulips -->
+<div class="floating" style="top:5%; left:5%;">🌷</div>
+<div class="floating" style="top:15%; left:25%;">🌷</div>
+<div class="floating" style="top:10%; right:10%;">🌷</div>
+<div class="floating" style="bottom:10%; left:10%;">🌷</div>
+<div class="floating" style="bottom:15%; right:15%;">🌷</div>
+<div class="floating" style="top:50%; left:2%;">🌷</div>
+<div class="floating" style="top:70%; right:5%;">🌷</div>
+
+<!-- 🍗 Fried Chicken -->
+<div class="floating" style="top:20%; right:30%;">🍗</div>
+<div class="floating" style="bottom:25%; left:30%;">🍗</div>
+<div class="floating" style="top:60%; right:20%;">🍗</div>
+<div class="floating" style="bottom:40%; right:40%;">🍗</div>
+
+<div class="container">
+    <h1 id="question">Will you be my Valentine, Nehana? 🥺❤️</h1>
+
+    <img id="image" src="oreo.jpg" alt="Oreo">
+
+    <div>
+        <button id="yesBtn">YES 💖</button>
+        <button id="noBtn">NO 😈</button>
+    </div>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const question = document.getElementById("question");
+    const image = document.getElementById("image");
+
+    function moveButton() {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 50);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+
+    noBtn.addEventListener("mouseover", moveButton);
+    noBtn.addEventListener("touchstart", function(e){
+        e.preventDefault();
+        moveButton();
+    });
+
+    yesBtn.addEventListener("click", function() {
+        question.innerHTML = "YAYYYY ❤️🍗🌷 You just made me the happiest person alive!";
+        image.src = "celebration.jpg";
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+    });
+</script>
+
+</body>
+</html>
