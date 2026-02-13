@@ -29,7 +29,10 @@
         }
 
         img {
-            width: 260px;
+            max-width: 90%;
+            max-height: 300px;
+            width: auto;
+            height: auto;
             margin: 20px 0;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
@@ -56,7 +59,6 @@
             position: absolute;
         }
 
-        /* Floating Emojis */
         .floating {
             position: absolute;
             font-size: 28px;
@@ -71,7 +73,6 @@
             100% { transform: translateY(0px); }
         }
 
-        /* Confetti */
         .confetti {
             position: absolute;
             font-size: 20px;
@@ -123,7 +124,7 @@
 <div class="floating" style="bottom:60%; left:15%;">💘</div>
 <div class="floating" style="top:80%; right:25%;">❤️</div>
 
-<div class="container">
+<div class="container" id="mainContainer">
     <h1 id="question">Will you be my Valentine, Nehana? 🥺❤️💖🌷🍗🧀✨</h1>
 
     <img id="image" src="oreo.jpg" alt="Oreo">
@@ -139,44 +140,6 @@
     const yesBtn = document.getElementById("yesBtn");
     const question = document.getElementById("question");
     const image = document.getElementById("image");
+    const container = document.getElementById("mainContainer");
 
-    function moveButton() {
-        const x = Math.random() * (window.innerWidth - 100);
-        const y = Math.random() * (window.innerHeight - 50);
-        noBtn.style.left = x + "px";
-        noBtn.style.top = y + "px";
-    }
-
-    noBtn.addEventListener("mouseover", moveButton);
-    noBtn.addEventListener("touchstart", function(e){
-        e.preventDefault();
-        moveButton();
-    });
-
-    function createConfetti() {
-        const emojis = ["🎉","✨","💖","🌷","🍗","🧀","❤️"];
-        for (let i = 0; i < 50; i++) {
-            const confetti = document.createElement("div");
-            confetti.classList.add("confetti");
-            confetti.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-            confetti.style.left = Math.random() * 100 + "vw";
-            confetti.style.animationDuration = (2 + Math.random() * 2) + "s";
-            document.body.appendChild(confetti);
-
-            setTimeout(() => {
-                confetti.remove();
-            }, 3000);
-        }
-    }
-
-    yesBtn.addEventListener("click", function() {
-        question.innerHTML = "YAYYYY!!! Nammal epala Varkala pone? 🤨";
-        image.src = "baby.gif";
-        yesBtn.style.display = "none";
-        noBtn.style.display = "none";
-        createConfetti();
-    });
-</script>
-
-</body>
-</html>
+    function moveButton()
